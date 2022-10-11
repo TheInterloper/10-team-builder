@@ -60,7 +60,7 @@ async function prompt(){
       }
     ])
 }
-
+//Funcs for case based responses
 function managerRole(){
   return inquirer
   .prompt([
@@ -100,15 +100,45 @@ function internRole(){
   ])
 }
 
+function additonalEmployee(){
+  return inquirer
+  .prompt([
+    {
+      type: 'confirm',
+      message: 'Would you like to add another employee?',
+      name: 'add',
+      choices: ['YES', 'NO']
+    }
 
-//Funcs for case based responses
-async function init(){
-  let data = await prompt();
-  console.log(data)
 
-  if(data.role === 'Manager')
-
+  ])
 }
+
+async function init(){
+
+  while (addMore) {
+    let data = await prompt();
+
+    if(data.role === 'Manager'){
+      await managerRole()
+
+    } else if(data.role === 'Engineer'){
+      await engineerRole()
+
+    } else {
+      await internRole()
+    } 
+
+    let answer = await additonalEmployee()
+    if (!answer.confirm){
+      addMore = false
+    }
+  }
+}
+
+
+
+
 
 init()
  
