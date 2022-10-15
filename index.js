@@ -6,11 +6,13 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
+const team = []
+
 
 //Write HTML file
 
 function writeToFile(data) {
-  fs.writeFile('index.html', data, (err)=>
+  fs.writeFile('./dist/index.html', data, (err)=>
     err ? console.log("error") : console.log('HTML created!'))
 }
 
@@ -21,11 +23,11 @@ function writeToFile(data) {
 //Engineer: name, ID, email, gitHub
 //Intern: name, ID, email, school
 
-const test = new Engineer ('tyler', '7', 'testemail', 'githubname')
-console.log(test)
+// const test = new Engineer ('tyler', '7', 'testemail', 'githubname')
+// console.log(test)
 
 
-async function prompt(){
+async function empAdd(){
   return inquirer
     .prompt([
       {
@@ -60,6 +62,7 @@ async function prompt(){
       }
     ])
 }
+
 //Funcs for case based responses
 function managerRole(){
   return inquirer
@@ -67,9 +70,9 @@ function managerRole(){
     {
       type: 'input',
       
-      message: 'What is the engineers GitHub URL?',
+      message: 'What is the managers office number?',
       
-      name: 'github',
+      name: 'officeNum',
     }
   ])
 }
@@ -80,9 +83,9 @@ function engineerRole(){
     {
       type: 'input',
       
-      message: 'What is the managers office number?',
+      message: 'What is the engineers GitHub URL?',
       
-      name: 'officeNum',
+      name: 'github',
     }
   ])
 }
@@ -105,24 +108,24 @@ function additonalEmployee(){
   .prompt([
     {
       type: 'confirm',
+      
       message: 'Would you like to add another employee?',
+      
       name: 'add',
-      choices: ['YES', 'NO']
     }
-
-
   ])
 }
 
 async function init(){
+  let addMore = true
 
   while (addMore) {
-    let data = await prompt();
+    let data = await empAdd();
 
-    if(data.role === 'Manager'){
+    if (data.role === 'Manager'){
       await managerRole()
-
-    } else if(data.role === 'Engineer'){
+    
+    } else if (data.role === 'Engineer'){
       await engineerRole()
 
     } else {
@@ -130,15 +133,15 @@ async function init(){
     } 
 
     let answer = await additonalEmployee()
-    if (!answer.confirm){
+
+    if (!answer.add){
       addMore = false
     }
   }
+
+  writeToFile(team)
+console.log(team)
 }
 
 
-
-
-
 init()
- 
