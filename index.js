@@ -139,8 +139,8 @@ async function init(){
     }
   }
 
-  writeToFile(team)
-console.log(team)
+  // writeToFile(team)    Not ready yet
+
 }
 
 
