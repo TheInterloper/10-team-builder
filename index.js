@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const userData = require('./lib/htmlinfo');
+const userData = require('./public/htmlinfo');
 const Employee = require('./lib/employee');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
@@ -12,7 +12,7 @@ const team = []
 //Write HTML file
 
 function writeToFile(data) {
-  fs.writeFile('./dist/index.html', data, (err)=>
+  fs.writeFile('./dist/index.html', team, (err)=>
     err ? console.log("error") : console.log('HTML created!'))
 }
 
@@ -23,8 +23,6 @@ function writeToFile(data) {
 //Engineer: name, ID, email, gitHub
 //Intern: name, ID, email, school
 
-// const test = new Engineer ('tyler', '7', 'testemail', 'githubname')
-// console.log(test)
 
 
 async function empAdd(){
@@ -139,7 +137,7 @@ async function init(){
     }
   }
 
-  // writeToFile(team)    Not ready yet
+  writeToFile(team)
 
 }
 
