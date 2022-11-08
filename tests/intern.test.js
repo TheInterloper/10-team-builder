@@ -1,10 +1,17 @@
 const Intern = require('../lib/intern')
 
-describe('getTitle()', () => {
+describe('School Name', () => {
+  it('Set school name', () => {
+    const school = 'Hardknocks'
+    const newEmployee = new Intern('Bob', 4, 'bob@example.com', school)
+    expect(newEmployee.school).toBe(school);
+  })
+
+  describe('getTitle()', () => {
     it('Get title', () => {
       const title = 'Intern';
-      const newEmployee = new Employee('Bob', 4, 'bob@example.com', title)
-      expect(newEmployee.getTitle()).toBe(title);
+      const newEmployee = new Intern('Bob', 4, 'bob@example.com', 'schoolName')
+      expect(newEmployee.getEmployeeTitle()).toBe(title);
     })
   })
 
@@ -12,6 +19,7 @@ describe('getTitle()', () => {
     it('Get School', () => {
       const school = 'schoolName'
       const newEmployee = new Intern('Bob', 4, 'bob@example.com', school)
-      expect(newEmployee.getSchool()).toBe(school)
+      expect(newEmployee.schoolInfo()).toBe(school)
     })
   })
+})
