@@ -1,4 +1,4 @@
-const intern = require('../lib/intern')
+const Intern = require('../lib/intern')
 
 describe('getTitle()', () => {
     it('Get title', () => {

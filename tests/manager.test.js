@@ -1,4 +1,4 @@
-const manager = require('../lib/manager')
+const Manager = require('../lib/manager')
 
 describe('getTitle()', () => {
     it('Get title', () => {
