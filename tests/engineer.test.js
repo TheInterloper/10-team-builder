@@ -8,7 +8,7 @@ describe('getTitle()', () => {
   })
 })
 
-describe('get Github()', () => {
+describe('get github()', () => {
   it('Get Github Username', () => {
     const github = 'githubUsername'
     const newEmployee = new Engineer('Bob', 4, 'bob@example.com', github)
